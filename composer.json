@@ -1,0 +1,12 @@
+{
+	"name": "abuyoyo/metabox",
+	"description": "WordPress metabox helper class",
+	"type": "library",
+	"version": "0.5",
+	"license": "BSD-3-Clause",
+	"autoload": {
+		"psr-4": {
+			"WPHelper\\" : ""
+		}
+	}
+}
