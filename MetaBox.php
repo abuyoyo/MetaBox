@@ -107,8 +107,8 @@ class MetaBox
         $this->id = $id;
         $this->priority = $priority;
         $this->screens = $screens;
-		$this->render_tpl = rtrim($template, '/');
-		$this->render_cb = $render;
+		$this->render_tpl = isset( $template ) ? rtrim( $template, '/' ) : '';
+		$this->render_cb = $render ?? '';
         $this->title = $title;
         $this->hook = $hook;
         $this->args = $args;
