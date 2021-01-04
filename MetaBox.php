@@ -45,9 +45,16 @@ class MetaBox
     /**
      * Path to the template used to display the content of the meta box.
      *
-     * @var string
+     * @var string filename
      */
-    private $template;
+    private $render_tpl;
+ 
+    /**
+     * Path to the template used to display the content of the meta box.
+     *
+     * @var callable
+     */
+    private $render_cb;
  
     /**
      * The title of the meta box.
@@ -100,7 +107,8 @@ class MetaBox
         $this->id = $id;
         $this->priority = $priority;
         $this->screens = $screens;
-        $this->template = rtrim($template, '/');
+		$this->render_tpl = isset( $template ) ? rtrim( $template, '/' ) : '';
+		$this->render_cb = $render ?? '';
         $this->title = $title;
         $this->hook = $hook;
         $this->args = $args;
@@ -120,7 +128,7 @@ class MetaBox
 		add_meta_box(
 			$this->id,
 			$this->title,
-			[ $this, 'render' ],
+			[ $this, 'render' ], // $this->render_tpl | $this->render_cb
 			$this->screens,
 			$this->context,
 			$this->priority,
@@ -194,12 +202,16 @@ class MetaBox
      * @param WP_Post $post
 	 * @param array metabox - id, title, callback, args array
      */
-    public function render($object, $metabox)
+    public function render()
     {
-        if ( ! is_readable( $this->template ) ){
+        if ( ! is_readable( $this->render_tpl ) && ! is_callable( $this->render_cb ) ){
             return;
         }
  
-        include $this->template;
+		if ( isset( $this->render_cb ) ){
+			call_user_func( $this->render_cb );
+		} else if ( isset( $this->render_tpl ) ){
+			include $this->render_tpl;
+		}
     }
 }
