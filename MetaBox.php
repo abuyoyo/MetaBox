@@ -10,7 +10,7 @@ use function add_meta_box;
  * Object-Oriented WordPress meta box creator.
  * 
  * @author abuyoyo
- * @version 0.5
+ * @version 0.6
  */
 class MetaBox
 {
