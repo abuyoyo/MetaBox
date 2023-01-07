@@ -208,7 +208,7 @@ class MetaBox
             return;
         }
  
-		if ( isset( $this->render_cb ) ){
+		if ( is_callable( $this->render_cb ) ){
 			call_user_func( $this->render_cb );
 		} else if ( isset( $this->render_tpl ) ){
 			include $this->render_tpl;
