@@ -1,6 +1,12 @@
 # Changelog
 WPHelper\MetaBox
 
+## 0.7
+
+### Fixed
+
+- Validate `is_callable(render_cb)` before `call_user_func` call.
+
 ## 0.6
 
 ### Added
