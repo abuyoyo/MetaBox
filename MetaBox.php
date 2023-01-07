@@ -81,7 +81,7 @@ class MetaBox
      * Constructor.
      *
      * @param string   $id
-     * @param string   $emplate
+     * @param string   $template
      * @param string   $title
      * @param string   $context
      * @param string   $priority
