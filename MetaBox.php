@@ -10,7 +10,7 @@ use function add_meta_box;
  * Object-Oriented WordPress meta box creator.
  * 
  * @author abuyoyo
- * @version 0.6
+ * @version 0.7
  */
 class MetaBox
 {
@@ -81,7 +81,7 @@ class MetaBox
      * Constructor.
      *
      * @param string   $id
-     * @param string   $emplate
+     * @param string   $template
      * @param string   $title
      * @param string   $context
      * @param string   $priority
@@ -208,7 +208,7 @@ class MetaBox
             return;
         }
  
-		if ( isset( $this->render_cb ) ){
+		if ( is_callable( $this->render_cb ) ){
 			call_user_func( $this->render_cb );
 		} else if ( isset( $this->render_tpl ) ){
 			include $this->render_tpl;
