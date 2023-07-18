@@ -1,6 +1,12 @@
 # Changelog
 WPHelper\MetaBox
 
+## 0.8
+
+### Fixed
+
+- Fix `Metabox::render()` callback arguments. Callback is passed `$data_object` and `$box`.
+
 ## 0.7
 
 ### Fixed
