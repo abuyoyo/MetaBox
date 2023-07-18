@@ -198,18 +198,21 @@ class MetaBox
  
     /**
      * Render the content of the meta box using a PHP template.
+	 * Callback passed to to add_meta_box()
+	 * 
+	 * @see do_meta_boxes()
      *
-     * @param WP_Post $post
-	 * @param array metabox - id, title, callback, args array
+     * @param mixed $data_object Object that's the focus of the current screen. eg. WP_Post|WP_Comment
+	 * @param array $box         Meta-box data [id, title, callback, args] (@see global $wp_meta_boxes)
      */
-    public function render()
+    public function render( $data_object, $box )
     {
         if ( ! is_readable( $this->render_tpl ) && ! is_callable( $this->render_cb ) ){
             return;
         }
  
 		if ( is_callable( $this->render_cb ) ){
-			call_user_func( $this->render_cb );
+			call_user_func( $this->render_cb, $data_object, $box );
 		} else if ( isset( $this->render_tpl ) ){
 			include $this->render_tpl;
 		}
